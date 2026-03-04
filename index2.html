@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Roxio Taxi App</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+}
+
+.container {
+  width: 350px;
+  background: white;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.logo {
+  color: #6ccf9b;
+}
+
+input, textarea {
+  width: 95%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.green {
+  background: #6ccf9b;
+  color: white;
+}
+
+.google {
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.or {
+  text-align: center;
+  color: gray;
+}
+
+.otp input {
+  width: 50px;
+  text-align: center;
+  font-size: 18px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.page {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+</style>
+
+<script>
+function showPage(pageId) {
+  var pages = document.getElementsByClassName("page");
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove("active");
+  }
+  document.getElementById(pageId).classList.add("active");
+}
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+<!-- LOGIN PAGE -->
+<div id="login" class="page active">
+  <h1 class="logo">ROXIO</h1>
+  <p>Login to continue</p>
+
+  <button class="google">Continue with Google</button>
+
+  <p class="or">OR</p>
+
+  <input type="text" placeholder="+91 Enter Mobile Number">
+  <button class="green" onclick="showPage('otp')">Continue</button>
+</div>
+
+<!-- OTP PAGE -->
+<div id="otp" class="page">
+  <h2>Enter OTP</h2>
+  <div class="otp">
+    <input maxlength="1">
+    <input maxlength="1">
+    <input maxlength="1">
+    <input maxlength="1">
+  </div>
+  <button class="green" onclick="showPage('home')">Verify</button>
+</div>
+
+<!-- HOME PAGE -->
+<div id="home" class="page">
+  <h2>Where to?</h2>
+
+  <iframe 
+    src="https://www.google.com/maps?q=Mumbai&output=embed"
+    width="100%" height="200" style="border:0;border-radius:10px;">
+  </iframe>
+
+  <input type="text" placeholder="Enter Destination">
+  <button class="green" onclick="showPage('payment')">Continue</button>
+</div>
+
+<!-- PAYMENT PAGE -->
+<div id="payment" class="page">
+  <h2>Ride & Payment</h2>
+
+  <input type="text" placeholder="Customer Name">
+
+  <p><b>Select Ride Type</b></p>
+  <label><input type="radio" name="ride"> Economy</label>
+  <label><input type="radio" name="ride"> Luxury</label>
+  <label><input type="radio" name="ride"> Family</label>
+  <label><input type="radio" name="ride"> Electric</label>
+
+  <hr>
+
+  <input type="text" placeholder="Card Holder Name">
+  <input type="text" placeholder="Card Number">
+
+  <div class="row">
+    <input type="text" placeholder="MM/YY">
+    <input type="password" placeholder="CVV">
+  </div>
+
+  <button class="green" onclick="showPage('ride')">Pay & Book Ride</button>
+</div>
+
+<!-- RIDE SUMMARY PAGE -->
+<div id="ride" class="page">
+  <h2>Ride Summary</h2>
+
+  <p><b>Amount:</b> ₹350</p>
+  <p><b>Date:</b> 4 March 2026</p>
+  <p><b>Driver:</b> Michael R.</p>
+  <p><b>Ride Type:</b> Economy</p>
+
+  <p>⭐⭐⭐⭐☆</p>
+
+  <textarea placeholder="Leave Feedback"></textarea>
+
+  <button class="green" onclick="showPage('login')">Done</button>
+</div>
+
+</div>
+
+</body>
+</html>
